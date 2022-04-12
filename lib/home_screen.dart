@@ -32,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
     getUserLocation();
     var userMarker = Marker(
-      markerId: MarkerId('user_location'),
+      markerId: const MarkerId('user_location'),
       position: LatLng(
           locationData?.latitude ?? defLat, locationData?.longitude ?? defLng),
     );
@@ -42,6 +42,13 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
+      bottomNavigationBar: BottomNavigationBar(
+        items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.favorite_outlined),label: "Favourite"),
+          BottomNavigationBarItem(icon: Icon(Icons.camera),label:"Camera"),
+          BottomNavigationBarItem(icon: Icon(Icons.settings),label: "Settings"),
+        ],
+      ),
       body: GoogleMap(
         mapType: MapType.normal,
         initialCameraPosition: _kGooglePlex,
@@ -53,13 +60,8 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Future<void> _goToTheLake() async {
-    final GoogleMapController controller = await _controller.future;
-    controller.animateCamera(CameraUpdate.newCameraPosition(misrUniversty));
-  }
-
-  Location location = new Location();
-  LocationData? locationData = null;
+  Location location = Location();
+  LocationData? locationData;
 
   void dispose() {
     super.dispose();
@@ -81,7 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void updateUserMarker() async {
     var userMarker = Marker(
-      markerId: MarkerId('user_location'),
+      markerId: const MarkerId('user_location'),
       position: LatLng(
           locationData?.latitude ?? defLat, locationData?.longitude ?? defLng),
     );
