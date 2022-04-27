@@ -42,17 +42,34 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.favorite_outlined),label: "Favourite"),
-          BottomNavigationBarItem(icon: Icon(Icons.camera),label:"Camera"),
-          BottomNavigationBarItem(icon: Icon(Icons.settings),label: "Settings"),
-        ],
+      bottomNavigationBar: BottomAppBar(
+        color: Colors.black87,
+        shape: CircularNotchedRectangle(),
+        notchMargin: 8,
+        child: BottomNavigationBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          items: const [
+            BottomNavigationBarItem(
+                icon: Icon(Icons.favorite_outlined,color: Colors.orangeAccent,), label: "Favourite"),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.settings,color: Colors.orangeAccent), label: "Settings"),
+          ],
+        ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){},
+        child: Icon(Icons.camera),
+
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       body: GoogleMap(
         mapType: MapType.normal,
         initialCameraPosition: _kGooglePlex,
-        onMapCreated: (GoogleMapController controller) {
+        onMapCreated: (controller) async {
+          String style = await DefaultAssetBundle.of(context)
+              .loadString('assets/map_style.json');
+          controller.setMapStyle(style);
           _controller.complete(controller);
         },
         markers: markers,
