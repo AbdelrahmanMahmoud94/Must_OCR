@@ -1,132 +1,53 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:location/location.dart';
+import 'package:keme/places_tab.dart';
+
+import 'camera_tab.dart';
+import 'map_tab.dart';
 
 class HomeScreen extends StatefulWidget {
-  static const String routeName = 'home';
+  static const String routeName = 'HomeScreen';
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  int currentIndex=0;
+
   @override
-  Completer<GoogleMapController> _controller = Completer();
-  static final CameraPosition _kGooglePlex = CameraPosition(
-    target: LatLng(29.9975, 30.9660),
-    zoom: 14.4746,
-  );
-
-  static final CameraPosition misrUniversty = CameraPosition(
-      bearing: 192.8334901395799,
-      target: LatLng(29.9975, 30.9660),
-      tilt: 59.440717697143555,
-      zoom: 19.151926040649414);
-
-  Set<Marker> markers = {};
-  double defLat = 0.0;
-  double defLng = 0.0;
-
-  void initState() {
-    super.initState();
-    getUserLocation();
-    var userMarker = Marker(
-      markerId: const MarkerId('user_location'),
-      position: LatLng(
-          locationData?.latitude ?? defLat, locationData?.longitude ?? defLng),
-    );
-    markers.add(userMarker);
-  }
-
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Scaffold(
-      bottomNavigationBar: BottomAppBar(
-        color: Colors.black87,
-        shape: CircularNotchedRectangle(),
-        notchMargin: 8,
-        child: BottomNavigationBar(
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          items: const [
-            BottomNavigationBarItem(
-                icon: Icon(Icons.favorite_outlined,color: Colors.orangeAccent,), label: "Favourite"),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.settings,color: Colors.orangeAccent), label: "Settings"),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: (){},
-        child: Icon(Icons.camera),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: currentIndex,
+        onTap: (index) {
+          currentIndex = index;
+          setState(() {
 
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      body: GoogleMap(
-        mapType: MapType.normal,
-        initialCameraPosition: _kGooglePlex,
-        onMapCreated: (controller) async {
-          String style = await DefaultAssetBundle.of(context)
-              .loadString('assets/map_style.json');
-          controller.setMapStyle(style);
-          _controller.complete(controller);
+          });
         },
-        markers: markers,
+        items: const [
+          BottomNavigationBarItem(
+              icon: Icon(
+                Icons.place,
+                color: Colors.orangeAccent,
+              ),
+              label: "Places"),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.map_outlined, color: Colors.orangeAccent),
+              label: "Map"),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.camera, color: Colors.orangeAccent),
+              label: "Camera"),
+        ],
       ),
+
+      body: tabs[currentIndex],
     );
   }
 
-  Location location = Location();
-  LocationData? locationData;
-
-  void dispose() {
-    super.dispose();
-  }
-
-  void getUserLocation() async {
-    bool permGranted = await isPermissionGranted();
-    if (!permGranted) return;
-    bool gpsEnabled = await isServiceEnabled();
-    if (!gpsEnabled) return;
-    locationData = await location.getLocation(); //can get location
-    location.changeSettings(
-        accuracy: LocationAccuracy.high, interval: 1000, distanceFilter: 1);
-    location.onLocationChanged.listen((newestLocation) {
-      locationData = newestLocation;
-      updateUserMarker();
-    });
-  }
-
-  void updateUserMarker() async {
-    var userMarker = Marker(
-      markerId: const MarkerId('user_location'),
-      position: LatLng(
-          locationData?.latitude ?? defLat, locationData?.longitude ?? defLng),
-    );
-    markers.add(userMarker);
-    setState(() {});
-    final GoogleMapController controller = await _controller.future;
-    var newCameraPosition = CameraPosition(
-        target: LatLng(locationData?.latitude ?? defLat,
-            locationData?.longitude ?? defLng),
-        zoom: 19);
-    controller.animateCamera(CameraUpdate.newCameraPosition(newCameraPosition));
-  }
-
-  Future<bool> isPermissionGranted() async {
-    var permissionStatus = await location.hasPermission();
-    if (permissionStatus == PermissionStatus.denied) {
-      permissionStatus = await location.requestPermission();
-    }
-    return permissionStatus == PermissionStatus.granted;
-  }
-
-  Future<bool> isServiceEnabled() async {
-    bool serviceEnabled = await location.serviceEnabled();
-    if (!serviceEnabled) {
-      serviceEnabled = await location.requestService();
-    }
-    return serviceEnabled;
-  }
+  var tabs = [
+    PlacesTab(),
+    MapTab(),
+    CameraTab(),
+  ];
 }
