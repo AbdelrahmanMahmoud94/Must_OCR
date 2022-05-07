@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:keme/places_tab.dart';
 
@@ -16,32 +18,34 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: currentIndex,
-        onTap: (index) {
-          currentIndex = index;
-          setState(() {
-
-          });
-        },
-        items: const [
-          BottomNavigationBarItem(
-              icon: Icon(
-                Icons.place,
-                color: Colors.orangeAccent,
-              ),
-              label: "Places"),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.map_outlined, color: Colors.orangeAccent),
-              label: "Map"),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.camera, color: Colors.orangeAccent),
-              label: "Camera"),
-        ],
+    return Stack(
+      children:[
+        Scaffold(
+        bottomNavigationBar: BottomNavigationBar(
+          currentIndex: currentIndex,
+          onTap: (index) {
+            currentIndex = index;
+            setState(() {
+            });
+          },
+          items: const [
+            BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.place,
+                  color: Colors.orangeAccent,
+                ),
+                label: "Places"),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.map_outlined, color: Colors.orangeAccent),
+                label: "Map"),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.camera, color: Colors.orangeAccent),
+                label: "Camera"),
+          ],
+        ),
+        body: tabs[currentIndex],
       ),
-
-      body: tabs[currentIndex],
+      ],
     );
   }
 
