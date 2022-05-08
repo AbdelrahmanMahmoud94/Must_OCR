@@ -1,13 +1,12 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 
 class PlaceWidget extends StatelessWidget {
-  String title;
+  String Place;
   String Location;
   String ImagePath;
 
-  PlaceWidget(this.title, this.Location, this.ImagePath);
+  PlaceWidget(this.Place, this.Location, this.ImagePath);
 
   @override
   Widget build(BuildContext context) {
@@ -28,34 +27,41 @@ padding: EdgeInsets.all(5),
         ),
         ),
         ),
-          Row(
-            children: [
-              Container(
-                alignment: Alignment.bottomLeft,
-                margin: EdgeInsets.all(8),
-                color: Colors.orangeAccent,
-                padding: EdgeInsets.symmetric(vertical: 4, horizontal: 12),
-                child: Text(
-                  title,
-                  style: TextStyle(color: Colors.white, fontSize: 16),
-                ),
+          Positioned(
+            bottom: 30,
+            left: 0,
+      child: Container(
+              margin: EdgeInsets.all(8),
+              color: Color.fromRGBO(227, 138, 51, 0.5019607843137255),
+              padding: EdgeInsets.symmetric(vertical: 4, horizontal: 10),
+              child: Text(
+                Place,
+                style: TextStyle(color: Colors.white, fontSize: 16),
               ),
+            ),
+    ),
+
+    Positioned(
+    // The Positioned widget is used to position the text inside the Stack widget
+    bottom: 0,
+    left: 0,
+    child:Container(
+           margin: EdgeInsets.all(8),
+           color: Color.fromRGBO(227, 138, 51, 0.5019607843137255),
+           padding: EdgeInsets.symmetric(vertical: 4, horizontal: 10),
+
+           child:RichText(
+          text: TextSpan(
+            children: [
+              WidgetSpan(
+                  child: Icon(Icons.location_on,color: Colors.white,size: 18,),
+                ),
+              TextSpan(text: Location),
             ],
           ),
-         // Row(
-         //    children: [
-         //      Container(
-         //        alignment: Alignment.bottomRight,
-         //        margin: EdgeInsets.all(8),
-         //        color: Colors.orangeAccent,
-         //        padding: EdgeInsets.symmetric(vertical: 4, horizontal: 12),
-         //        child: Text(
-         //          Location,
-         //          style: TextStyle(color: Colors.white, fontSize: 16,),textDirection: TextDirection.rtl,
-         //        ),
-         //      ),
-         //    ],
-         //  )
+        )
+         ),
+    ),
         ],
       ),
     );
