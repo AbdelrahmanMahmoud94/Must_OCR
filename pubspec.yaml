@@ -33,6 +33,7 @@ dependencies:
   camera: ^0.9.4+19
   flutter_svg: ^1.0.3
   panorama: ^0.4.1
+  blur_bottom_bar: ^1.0.3
   flutter:
     sdk: flutter
 
