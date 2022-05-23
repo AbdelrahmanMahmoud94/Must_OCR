@@ -12,21 +12,16 @@ class MapTab extends StatefulWidget {
 class _MapTabState extends State<MapTab> {
   @override
   Completer<GoogleMapController> _controller = Completer();
-  static final CameraPosition _kGooglePlex = CameraPosition(
+  static final CameraPosition misrUniversty = CameraPosition(
     target: LatLng(29.9975, 30.9660),
     zoom: 14.4746,
   );
 
-  static final CameraPosition misrUniversty = CameraPosition(
-      bearing: 192.8334901395799,
-      target: LatLng(29.9975, 30.9660),
-      tilt: 59.440717697143555,
-      zoom: 19.151926040649414);
-
   Set<Marker> markers = {};
-  double defLat = 0.0;
-  double defLng = 0.0;
+  double defLat = 29.9975;
+  double defLng = 30.9660;
 
+  @override
   void initState() {
     super.initState();
     getUserLocation();
@@ -38,12 +33,13 @@ class _MapTabState extends State<MapTab> {
     markers.add(userMarker);
   }
 
+  @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
       body: GoogleMap(
         mapType: MapType.normal,
-        initialCameraPosition: _kGooglePlex,
+        initialCameraPosition: misrUniversty,
         onMapCreated: (controller) async {
           String style = await DefaultAssetBundle.of(context)
               .loadString('assets/map_style.json');
@@ -54,10 +50,10 @@ class _MapTabState extends State<MapTab> {
       ),
     );
   }
-
   Location location = Location();
   LocationData? locationData;
 
+  @override
   void dispose() {
     super.dispose();
   }
