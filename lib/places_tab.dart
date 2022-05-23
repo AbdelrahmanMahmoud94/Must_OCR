@@ -12,27 +12,27 @@ class PlacesTab extends StatelessWidget {
           children: [
             Row(
               children: [
-                PlaceWidget("Pyramids", "Giza", "assets/images/pyramids.jpg"),
+                PlaceWidget("Pyramids", "Giza", "assets/images/Pyramids.jpg"),
               ],
             ),
             Row(
               children: [
-                PlaceWidget("Abu Simbel", "Upper Egypt, Aswan", "assets/images/Abu simble.jpg"),
+                PlaceWidget("Abu Simbel", "Upper Egypt, Aswan", "assets/images/Abu Simble.jpg"),
               ],
             ),
             Row(
               children: [
-                PlaceWidget("Karnak Temple", "Upper Egypt, Luxor", "assets/images/karnak.jpg"),
+                PlaceWidget("Karnak Temple", "Upper Egypt, Luxor", "assets/images/Karnak Temple.jpg"),
               ],
             ),
             Row(
               children: [
-                PlaceWidget("Hatshepsut Temple", "Upper Egypt, Kings Valley Rd", "assets/images/Hatshepsut.jpg"),
+                PlaceWidget("Hatshepsut Temple", "Upper Egypt, Kings Valley Rd", "assets/images/Hatshepsut Temple.jpg"),
               ],
             ),
             Row(
               children: [
-                PlaceWidget("The Baron Palace", "Cairo", "assets/images/Baron.jpg"),
+                PlaceWidget("The Baron Palace", "Cairo", "assets/images/The Baron Palace.jpg"),
               ],
             ),
           ],
