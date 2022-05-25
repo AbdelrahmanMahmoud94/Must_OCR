@@ -34,6 +34,9 @@ dependencies:
   flutter_svg: ^1.0.3
   panorama: ^0.4.1
   blur_bottom_bar: ^1.0.3
+  flutter_phone_direct_caller: ^2.1.1
+  firebase_core: ^1.10.5
+  firebase_auth: ^3.3.3
   flutter:
     sdk: flutter
 

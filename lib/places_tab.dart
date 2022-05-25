@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'place_widget.dart';
 
 class PlacesTab extends StatelessWidget {
@@ -37,6 +38,15 @@ class PlacesTab extends StatelessWidget {
             ),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: ()async{
+          const number = '0225315454'; //set the number here
+          bool? res = await FlutterPhoneDirectCaller.callNumber(number);
+        },
+        backgroundColor: Colors.orangeAccent,
+        label: const Text('Tourist Police'),
+        icon: const Icon(Icons.call),
       ),
     );
   }

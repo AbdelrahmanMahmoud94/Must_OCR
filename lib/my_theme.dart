@@ -17,12 +17,12 @@ class MyThemeData {
     textTheme: TextTheme(
       subtitle1: TextStyle(
         color: Colors.white,
-        fontSize: 30,
+       // fontSize: 30,
         fontWeight: FontWeight.bold,
       ),
       headline3: TextStyle(
         color: Colors.white,
-        fontSize: 20,
+        //fontSize: 20,
       ),
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
