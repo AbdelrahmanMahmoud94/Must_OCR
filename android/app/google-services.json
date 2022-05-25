@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "419927989089",
+    "project_id": "keme-9dda0",
+    "storage_bucket": "keme-9dda0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:419927989089:android:0b38e324e43b3bc6240320",
+        "android_client_info": {
+          "package_name": "com.example.keme"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "419927989089-kgg504r8fa11v72jjv34orph55g8elng.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDwOCFUxJeORCa0u3YAp6jc1MMvzx6X1-M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "419927989089-kgg504r8fa11v72jjv34orph55g8elng.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

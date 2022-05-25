@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:keme/places_tab.dart';
+import 'package:keme/setting_tab.dart';
 import 'camera_tab.dart';
 import 'map_tab.dart';
 
@@ -25,10 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
         },
         items: const [
           BottomNavigationBarItem(
-              icon: Icon(
-                Icons.place,
-                color: Colors.orangeAccent,
-              ),
+              icon: Icon(Icons.place, color: Colors.orangeAccent,),
               label: "Places"),
           BottomNavigationBarItem(
               icon: Icon(Icons.map_outlined, color: Colors.orangeAccent),
@@ -36,8 +34,12 @@ class _HomeScreenState extends State<HomeScreen> {
           BottomNavigationBarItem(
               icon: Icon(Icons.camera, color: Colors.orangeAccent),
               label: "Camera"),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.settings, color: Colors.orangeAccent),
+              label: "Setting"),
         ],
       ),
+
     );
   }
 
@@ -45,5 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
     PlacesTab(),
     MapTab(),
     CameraTab(),
+    SettingTab(),
   ];
 }
+
