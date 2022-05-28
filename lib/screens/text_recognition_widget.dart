@@ -213,6 +213,7 @@ class _TextRecognitionWidgetState extends State<TextRecognitionWidget> {
   Future pickImage() async {
     final file = await ImagePicker().getImage(source: ImageSource.camera);
     image = File(file!.path);
+    
 
     setState(() {
       image;
