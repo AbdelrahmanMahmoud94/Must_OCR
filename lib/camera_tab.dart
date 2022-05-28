@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
+import 'package:keme/screens/main_ocr.dart';
 
 import 'ar_tour_tab.dart';
 import 'filter_tab.dart';
-import 'ocr_tab.dart';
 
 class CameraTab extends StatelessWidget {
   @override
@@ -22,15 +22,16 @@ class CameraTab extends StatelessWidget {
             children: [
               ElevatedButton.icon(
                 onPressed: () {
-                  Navigator.pushNamed(context, OcrTab.routeName);
-                },
+Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) =>   MainOcr()),
+  );                },
                 icon: Icon(
                   Icons.enhance_photo_translate,
                 ),
                 label: Text("Translate with camera"),
                 style: ButtonStyle(
-                  backgroundColor:
-                      MaterialStateProperty.all(Colors.orangeAccent),
+                  backgroundColor: MaterialStateProperty.all(Colors.orangeAccent),
                 ),
               ),
             ],
@@ -50,8 +51,7 @@ class CameraTab extends StatelessWidget {
                 ),
                 label: Text("tour with camera"),
                 style: ButtonStyle(
-                  backgroundColor:
-                      MaterialStateProperty.all(Colors.orangeAccent),
+                  backgroundColor: MaterialStateProperty.all(Colors.orangeAccent),
                 ),
               ),
             ],
@@ -71,8 +71,7 @@ class CameraTab extends StatelessWidget {
                 ),
                 label: Text("Fiters"),
                 style: ButtonStyle(
-                  backgroundColor:
-                      MaterialStateProperty.all(Colors.orangeAccent),
+                  backgroundColor: MaterialStateProperty.all(Colors.orangeAccent),
                 ),
               ),
             ],
@@ -80,7 +79,7 @@ class CameraTab extends StatelessWidget {
         ],
       ),
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: ()async{
+        onPressed: () async {
           const number = '0225315454'; //set the number here
           bool? res = await FlutterPhoneDirectCaller.callNumber(number);
         },

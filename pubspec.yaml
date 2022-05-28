@@ -37,6 +37,13 @@ dependencies:
   flutter_phone_direct_caller: ^2.1.1
   firebase_core: ^1.10.5
   firebase_auth: ^3.3.3
+  firebase_ml_vision: ^0.9.7
+  image_picker: ^0.8.5+3
+  clipboard: ^0.1.2+8
+  translator: ^0.1.5
+  dropdown_button2: ^1.4.0
+  loading_animations: ^2.2.0
+
   flutter:
     sdk: flutter
 

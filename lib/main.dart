@@ -9,7 +9,6 @@ import 'package:keme/screens/signin_screen.dart';
 import 'package:keme/screens/signup_screen.dart';
 import 'ar_tour_tab.dart';
 import 'home_screen.dart';
-import 'ocr_tab.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,17 +24,15 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: "Keme",
       routes: {
-        SignInScreen.routeName:(buildContext)=>SignInScreen(),
-        SignUpScreen.routeName:(buildContext)=>SignUpScreen(),
-        ResetPassword.routeName:(buildContext)=>ResetPassword(),
+        SignInScreen.routeName: (buildContext) => SignInScreen(),
+        SignUpScreen.routeName: (buildContext) => SignUpScreen(),
+        ResetPassword.routeName: (buildContext) => ResetPassword(),
         HomeScreen.routeName: (buildContext) => HomeScreen(),
         PlaceDetails.routeName: (buildContext) => PlaceDetails(),
         FilterTab.routeName: (buildContext) => FilterTab(),
-        OcrTab.routeName: (buildContext) => OcrTab(),
         ArTourTab.routeName: (buildContext) => ArTourTab(),
         Place360Degree.routeName: (buildContext) => Place360Degree(),
       },
-
       initialRoute: SignInScreen.routeName,
       theme: MyThemeData.DarkTheme,
     );
